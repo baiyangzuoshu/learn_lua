@@ -4,3 +4,67 @@ mac
 3.cd lua-5.3.0
 4.make macosx test
 5.sudo make install
+
+xcode下编译lua
+1.首先创建一个控制台项目，然后选中项目，选择target-Library,类型选择static
+2.新建一个文件夹，将lua-5.3.0下的src文件，除"lua.c、luac.c"外，全部加入到新建的文件夹，Add to targets选择刚刚创建的静态库
+3.接着对静态库进行build
+4.最后需要将.a文件加入到项目的静态库中
+
+开发环境
+lua luac .lua
+
+数据类型
+1.nil,boolean,string,number,table,function
+2.function aa() end
+print(type(1))//number
+print(type("abcd"));//string
+print(type({}));//table
+print(type(aa));//function
+print(type(nil));//nil
+print(type(true));//boolean
+3.动态类型语言的特点：变量无类型，数据才有类型
+
+运算符与表达式
+1.=、*、+、-、%、！、&、｜、
+2.==、～=、and 、not、or、
+3.if    0                then  end
+4.for   i=0,10           do end
+5.while i>0              do end
+6.repeat                 until true
+7.for k,v in iparis(obj) do end
+8.function  aa()         end
+
+string字符串
+
+table表:字典与数组的混合
+1.a={x=1,y=2,1,2,3,4,5,6,7}
+2.a.x <==>a["x"]
+3.#a
+
+function
+1.table.pack table.unpack
+2.select
+2.pairs iparis
+
+Metatable
+1.setmetatable、getmetatable
+2.元方法:__add、__sub、__eq,__index、__newindex、__call
+
+模拟类：对象是对象，类也是对象
+1.使用setmetatable签订元表关系
+2.再使用__index元方法指定对应表,一般指向自己(这里会有一个疑惑，会不会出现循环呢？除非自己是自己的元表,并且访问不存在的属性)
+
+环境:_G
+1._ENV:函数上下文环境
+
+模块:package
+1.模块切记不使用全局变量，尽量使用local定义变量
+
+栈:链表，动态规划和管理数据
+1.开口向下，栈顶是最大的idx
+2.理解压栈出栈顺序
+3.-1和1
+
+总结
+1.业务逻辑使用lua
